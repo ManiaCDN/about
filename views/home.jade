@@ -1,0 +1,126 @@
+extends layout
+
+block content
+    .jumbotron
+        .container
+            h1 ManiaCDN
+            p The ManiaPlanet CDN, for the community, by the community.
+            p
+                a.btn.btn-primary.btn-lg(href='#cdn_request') Get involved
+    .container
+        .row
+            .col-md-3.col-md-push-9.sidebar(role='complementary')
+                nav.nav-sidebar.hidden-print.hidden-xs.hidden-sm(data-spy='affix', data-offset-top='300', data-offset-bottom='0')
+                    ul.nav-sidebar-list.nav.nav-stacked
+                        li.active
+                            a(href='#cdn_home') Overview
+                        li
+                            a(href='#cdn_status') Status
+                        li
+                            a(href='#cdn_mirrors') Mirrors
+                        li
+                            a(href='#cdn_about') About
+                        li
+                            a(href='#cdn_abuse') Abuse & Security
+                            ul.nav.nav-stacked
+                                li
+                                    a(href='#cdn_abuse_security') Security
+                                li
+                                    a(href='#cdn_abuse_takedown') (DMCA) Takedown
+                        li.paypal-entry
+                            form.paypal(action='https://www.paypal.com/cgi-bin/webscr', method='post', target='_top')
+                                input(type='hidden', name='cmd', value='_s-xclick')
+                                input(type='hidden', name='hosted_button_id', value='E6T8CWAUN32ZG')
+                                input(type='image', src='https://www.paypalobjects.com/en_US/NL/i/btn/btn_donateCC_LG.gif', border='0', name='submit', alt='PayPal - The safer, easier way to pay online!')
+                                img(alt='', border='0', src='https://www.paypalobjects.com/en_US/i/scr/pixel.gif', width='1', height='1')
+            .col-md-9.col-md-pull-3(role='main')
+                section#cdn_home.group
+                    h1 Overview
+                    p
+                        | The ManiaCDN is a set of mirrors provided by the community in order to provide a stable cluster of servers to provide static content for game content
+                    h3 Content
+                    p
+                        | Contents of the CDN is managed by validated authors. They can update their files and it will be available within 12 hours (but mostly 6 hours) on the whole network.
+                    p
+                        | You can apply as a content provider by clicking the Distribute my Content button. You can also read more information about the process of checking and rules.
+                    a.btn.btn-primary.btn-sm(href='#cdn_request') Distribute my Content
+                    h3 Management
+                    p
+                        | Servers are automaticly being updated with the newest files distributed over the network.
+                        | We also check every so often if the servers are still updating and will directly suspend it when it's providing old content.
+                    p
+                        | New servers are always welcome! Please click on the button Donate my Server to see how you can donate to the CDN.
+                    a.btn.btn-success.btn-sm(href='#cdn_request') Donate my Server
+                section#cdn_status.group
+                    h1 Status
+                    p The actual status of the ManiaCDN network:
+                    p Online mirrors: #{mirrorsOnline}
+                section#cdn_mirrors.group
+                    h1 Mirrors
+                    p List with mirrors and the update time
+                    table.table.table-hover.table-responsive
+                        thead
+                            tr
+                                th IP
+                                th Loc
+                                th Active
+                                th Status
+                        tbody
+                            each mirror in mirrors
+                                if mirror.active
+                                    tr.active
+                                else
+                                    tr
+
+                                td
+                                    code #{mirror.ip4}#{mirror.ip6}
+                                td #{mirror.countrycode}
+                                td
+                                    if mirror.active
+                                        label.label.label-success Active
+                                    else
+                                        label.label.label-warning Inactive
+                                td
+                                    .server-status(data-status='#{mirror.status}')
+
+                section#cdn_request.group
+                    h1 Get involved
+                    p.lead
+                        | If you want to distribute or mirror the content. Please visit our IRC channel #mp-cdn on QuakeNet, or send an PM to 'toffe' or 'askuri' on the ManiaPlanet forum.
+                section#cdn_about.group
+                    h1 About the CDN
+                    p
+                        | We are Askuri and Toffe. Together we lead this project to the best way you could think. We think we should
+                        | be active for a lifetime!
+                        br
+                        span.text-muted
+                            | Bit sarcasm, but ye, as we get users that rely on us we need to stay up! We take this really serious!
+                        | .
+                    p
+                        | Toffe is working on the technical dns stuff and the website.
+                        br
+                        |                         Askuri is the one that maintains the master repo and will constant work on the content itself.
+                    p
+                        | We are working with Open Source at most of the mirros, atleast our master repo and even this site and checking logic is open sourced! (by ourself!).
+                        br
+                        a.btn.btn-sm.btn-info(href='https://github.com/ManiaCDN', target='_blank') GitHub
+                section#cdn_abuse.group
+                    h1 Abuse & Security
+                    p
+                        | We want to give our users a safe and abuse-free content. And we are open to any takedown, security and other important reports!
+                    #cdn_abuse_security.subgroup
+                        h2 Security
+                        p
+                            | We take security pretty high. We would really like to get security reports or mirror abuse reports to make the network as secure as possible!
+                        .alert.alert-warning
+                            p You can send security reports on security[AT]maniacdn.net
+                        .alert.alert-info
+                            p
+                                | If you would like to encrypt or sign your message, please use the GPG key provided here by
+                                a(href='http://about.maniacdn.net/gpg.txt') clicking here.
+                    #cdn_abuse_takedown.subgroup
+                        h2 DMCA Takedown
+                        p
+                            | We will only serve non-copyright material. But when we do, we are open to take the file away!
+                            br
+                            |                             Please send us a email on dmca[AT]maniacdn.net with the DMCA takedown request.
