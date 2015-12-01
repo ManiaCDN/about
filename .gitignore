@@ -78,3 +78,4 @@ node_modules
 ### Project
 # Bower
 public/components
+lib/config.js
