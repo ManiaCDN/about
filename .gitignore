@@ -76,4 +76,5 @@ build/Release
 node_modules
 
 ### Project
-
+# Bower
+public/components
