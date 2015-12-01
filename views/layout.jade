@@ -1,0 +1,31 @@
+doctype html
+html
+    head
+        block title
+            title='ManiaCDN - About pages'
+
+        meta(charset='utf-8')
+
+        block css
+            link(rel='stylesheet', href='/components/bootstrap/dist/css/bootstrap.min.css')
+            link(rel='stylesheet', href='/components/fuelux/dist/css/fuelux.min.css')
+
+            link(rel='stylesheet', href='/stylesheets/style.css')
+
+    body(class='fuelux')
+        block topmenu
+
+
+        block content
+
+
+
+        block foot
+            include ./layout/default_footer.jade
+
+        block js
+            script(src='/components/jquery/dist/jquery.min.js')
+            script(src='/components/bootstrap/dist/js/bootstrap.min.js')
+            script(src='/components/moment/min/moment.min.js')
+            script(src='/components/fuelux/dist/js/fuelux.min.js')
+            script(src='/javascripts/main.js')
