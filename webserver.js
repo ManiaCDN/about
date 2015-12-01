@@ -9,8 +9,6 @@ var session = require('express-session');
 var config = require('./lib/config');
 var pool = require('./lib/database').pool;
 
-var handlebars = require('express-handlebars');
-
 var routes = {};
     routes.about = require('./routes/about');
     routes.api = require('./routes/api');
@@ -21,10 +19,9 @@ var app = express();
 /**
  * View Settings
  */
-app.engine('handlebars', handlebars({defaultLayout: 'main'}));
 
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'handlebars');
+app.set('view engine', 'jade');
 
 /**
  * Middleware
