@@ -6,7 +6,6 @@
  */
 var database = require('./lib/database');
 var config = require('./lib/config');
-var moira = require('moira');
 var async = require('async');
 
 var ipAddress = null;
@@ -19,7 +18,7 @@ database.makeConnection(function (err, connection) {
 
     var webserver = require('./webserver');
 
-    var debug = require('debug')('ManiaCDN:server');
+    var debug = require('debug')('ManiaCDN-about:server');
     var http = require('http');
 
     /**
