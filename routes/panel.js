@@ -6,6 +6,7 @@ var router = express.Router();
 
 var csrf = require('csurf');
 var csrfProtection = csrf({cookie: false});
+var bouncer = require('express-bouncer')(500, 900000, 2);
 var moment = require('moment');
 
 var bcrypt = require('bcrypt');
@@ -16,6 +17,13 @@ var Servers = require('./../services/Server');
 var auth = require('./../lib/authentication');
 var authRequired = auth.middleware.requireAuthenticated;
 var authInit = auth.middleware.initAuthenticated;
+
+/**
+ * Bouncer
+ */
+bouncer.blocked = function (req, res) {
+    res.send (403, "Too many requests have been made!");
+};
 
 /**
  * /Secure/* will need an active login
@@ -42,14 +50,14 @@ router.get('/secure/logout', authInit, function (req, res, next) {
 /**
  * Login action (POST)
  */
-router.post('/login', csrfProtection, authInit, function (req, res, next) {
-    if (!req.body.hasOwnProperty('username') || !req.body.hasOwnProperty('password')) {
+router.post('/login', bouncer.block, csrfProtection, authInit, function (req, res, next) {
+    if (!req.body.hasOwnProperty('login_username') || !req.body.hasOwnProperty('login_password')) {
         res.redirect('/panel/login?error');
         return;
     }
 
-    let user = req.body.username;
-    let pass = req.body.password;
+    let user = req.body.login_username;
+    let pass = req.body.login_password;
 
     // Lookup the user
     require('./../services/Maintainer').maintainer({email: user})
@@ -63,6 +71,7 @@ router.post('/login', csrfProtection, authInit, function (req, res, next) {
 
         req.auth.login(req, row.maintainerid, row.password, pass)
             .then(function() {
+                bouncer.reset(req);
                 res.redirect('/panel/secure/');
             })
             .catch(function() {
@@ -83,7 +92,7 @@ router.post('/login', csrfProtection, authInit, function (req, res, next) {
  * Panel Home
  */
 router.get('/secure/', function (req, res, next) {
-    res.render('panel/index', {layout: 'panel'});
+    res.render('panel/home');
 });
 
 /**
@@ -94,9 +103,9 @@ router.get('/secure/servers', function (req, res, next) {
     Servers.servers({
         maintainerid: req.auth.maintainer.maintainerid
     }).then(function(rows) {
-        res.render('panel/servers', {layout: 'panel', servers: rows});
+        res.render('panel/servers', {servers: rows});
     }).catch(function() {
-        res.render('panel/servers', {layout: 'panel', servers: []});
+        res.render('panel/servers', {servers: []});
     });
 });
 
