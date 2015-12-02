@@ -6,19 +6,6 @@ module.exports = function (grunt) {
         pkg: grunt.file.readJSON('package.json'),
 
         less: {
-            development: {
-                options: {
-                    sourceMap: true,
-                    sourceMapFilename: 'public/stylesheets/dist.css.map',
-                    sourceMapURL: '/stylesheets/dist.css.map',
-                    sourceMapBasepath: 'public',
-                    sourceMapRootpath: '/',
-                    paths: ["public/stylesheets"]
-                },
-                files: {
-                    "public/stylesheets/dist.css": "public/stylesheets/dev/main.less"
-                }
-            },
             production: {
                 options: {
                     sourceMap: true,
