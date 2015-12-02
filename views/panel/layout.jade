@@ -1,0 +1,27 @@
+extends ../layout
+
+block title
+    title='ManiaCDN - Mirror Panel'
+
+
+block topmenu
+    nav.navbar.navbar-default
+        .container
+            .navbar-header
+                button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#panelnavbar', aria-expanded='false')
+                    span.sr-only Toggle navigation
+                    span.icon-bar
+                    span.icon-bar
+                    span.icon-bar
+                a.navbar-brand(href='/') ManiaCDN
+            // Collect the nav links, forms, and other content for toggling
+            #panelnavbar.collapse.navbar-collapse
+                ul.nav.navbar-nav
+                    li
+                        a(href='/panel/secure/') Home
+                    li
+                        a(href='/panel/secure/servers') My Servers
+
+block foot
+    .container
+        include ../layout/default_footer.jade
