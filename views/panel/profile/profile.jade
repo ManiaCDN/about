@@ -1,0 +1,101 @@
+extends ../layout
+
+block content
+    .container
+        .page-header
+            h1 Profile and settings
+            p.lead Your personal profile and the settings of your account
+
+        if isSuccess
+            .alert.alert-success
+                strong Profile Updated!
+        if isError
+            .alert.alert-danger
+                strong Profile update failed!
+                p Check if required fields are populated, and if your current password is correct (only when changing password).
+
+        form.form(action, method='post')
+            input(type='hidden', value=csrfToken, name='_csrf')
+
+            .row
+                .col-md-6
+                    h3 Profile
+
+                    .form-group
+                        label(for='displayname') Display Name
+                        input.form-control(type='text', name='displayname', id='displayname', value=maintainer.displayname, required=true)
+                        .help-block
+                            | Your display name will be public and can be used by our public pages. You can turn this
+                            | on and off by selecting the privacy setting in the other section.
+
+                    .form-group
+                        label(for='name') Personal Name
+                        input.form-control(type='text', name='name', id='name', value=maintainer.name, required=true)
+                        .help-block
+                            | We are using this name to get in contact with you for technical and management updates.
+                            | This will never be public!
+
+                    .form-group
+                        label(for='email') Email address
+                        input.form-control(type='email', name='email', id='email', value=maintainer.email, required=true)
+                        .help-block
+                            | We will use your email address to send updates about the CDN and for notifications about
+                            | your servers.
+
+
+                    h3 Password
+
+                    .checkbox
+                        label.checkbox-custom(data-initialize='checkbox')
+                            input.sr-only(type='checkbox', value='1', checked=false, name='password_change', data-toggle='collapse', data-target='#changePassword')
+                            span.checkbox-label Change password
+
+                    #changePassword.collapse
+                        .form-group
+                            label(for='password_current') Current password
+                            input.form-control(type='password', name='password_current', id='password_current')
+                            .help-block
+                                | Fill in your current password.
+
+                        .form-group
+                            label(for='password_new_1') New password
+                            input.form-control(type='password', name='password_new_1', id='password_new_1')
+
+                        .form-group
+                            label(for='password_new_2') New password (repeat)
+                            input.form-control(type='password', name='password_new_2', id='password_new_2')
+                            .help-block.text-warning
+                                | Your new password needs to be at least 8 characters!
+
+
+
+
+                .col-sm-6
+                    h3 Settings & Privacy
+
+                    h5 Display Name
+                    .checkbox
+                        label.checkbox-custom(data-initialize='checkbox')
+                            input.sr-only(type='checkbox', value='1', name='p_displayname_serverlist', checked=(maintainer.p_displayname_serverlist === 1))
+                            span.checkbox-label Show my display name in the server list
+                    .checkbox
+                        label.checkbox-custom(data-initialize='checkbox')
+                            input.sr-only(type='checkbox', value='1', name='p_displayname_contributelist', checked=(maintainer.p_displayname_contributelist === 1))
+                            span.checkbox-label Show my display name in the contributors list
+
+                    h5 Email settings
+                        small.pull-right You can't edit this right now.
+                    .checkbox
+                        label.checkbox-custom(data-initialize='checkbox')
+                            input.sr-only(type='checkbox', value='1', checked=true, disabled=true)
+                            span.checkbox-label Receive emails about CDN updates.
+                    .checkbox
+                        label.checkbox-custom(data-initialize='checkbox')
+                            input.sr-only(type='checkbox', value='1', checked=true, disabled=true)
+                            span.checkbox-label Receive emails about your server status.
+
+
+            hr
+
+            .text-center
+                button.btn.btn-primary(type='submit') Save
