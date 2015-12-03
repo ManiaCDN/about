@@ -145,7 +145,7 @@ router.post('/secure/servers/:serverid', csrfProtection, function (req, res, nex
         var newActive = rows[0].active;
 
         // Lets check for changes
-        if (req.body.active && req.body.active === '1') {
+        if (req.body.edit_active && req.body.edit_active === '1') {
             // Enable server
             newActive = 1;
         }else{

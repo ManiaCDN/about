@@ -6,6 +6,8 @@ block content
             h1 Edit server
             p.lead Edit the server.
 
+        br
+
         form.form(action, method='post')
             input(type='hidden', value=csrfToken, name='_csrf')
 
@@ -14,3 +16,4 @@ block content
                     input.sr-only(type='checkbox', value='1', name='edit_active', checked=(server.active === 1))
                     span.checkbox-label Make server active
 
+            button.btn.btn-success(type='submit') Save
