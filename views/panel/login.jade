@@ -17,7 +17,7 @@ block content
                             .form-group
                                 label.control-label.col-sm-4(for='login_username') Username/Email
                                 .col-sm-8
-                                    input.form-control(id='login_username', name='login_username', type='text')
+                                    input.form-control(id='login_username', name='login_username', type='text', autofocus=true)
 
                             .form-group
                                 label.control-label.col-sm-4(for='login_password') Password
@@ -28,4 +28,9 @@ block content
                                 label.control-label.col-sm-4
                                 .col-sm-8
                                     button.btn.btn-success.btn-block(type='submit') Login!
+
+                            .form-group
+                                label.control-label.col-sm-4
+                                .col-sm-8
+                                    a.btn.btn-default.btn-block(href='/') Go back!
 block foot

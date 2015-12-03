@@ -1,0 +1,48 @@
+"use strict";
+
+var pool = require('./../lib/database').pool;
+
+module.exports = {};
+
+module.exports.getHome = function (req, res, next) {
+    var mirrorsOnline = 0;
+    var mirrors = [];
+
+    let onlineCountSql = `
+    SELECT
+        COUNT(*) as online
+    FROM
+        server
+    WHERE
+        active = 1
+        AND status > 0
+        AND status < 4;
+    `;
+
+    let mirrorStatusSql = `
+        SELECT * FROM server WHERE hidden = 0 ORDER BY active DESC;
+    `;
+
+    // First get queries done
+    pool.query(onlineCountSql, function(err, rows, fields) {
+        if (!err && rows.length > 0) {
+            mirrorsOnline = rows[0].online;
+        }
+
+        pool.query(mirrorStatusSql, function(err, rows, fields) {
+            if (!err && rows.length > 0) {
+                mirrors = rows;
+            }
+
+            renderNow();
+        });
+    });
+
+
+    function renderNow() {
+        res.render('home', {
+            mirrorsOnline: mirrorsOnline,
+            mirrors: mirrors
+        });
+    }
+};
