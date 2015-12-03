@@ -10193,6 +10193,15 @@ label.fuelux .checkbox-inline {
 section.group {
   margin-bottom: 50px;
 }
+.vertical-center {
+  min-height: 100%;
+  /* Fallback for browsers do NOT support vh unit */
+  min-height: 100vh;
+  /* These two lines are counted as one :-)       */
+  display: flex;
+  align-items: center;
+  margin-bottom: 0;
+}
 .nav-sidebar {
   padding-left: 15px;
 }
@@ -10265,5 +10274,24 @@ form.paypal {
 }
 li.paypal-entry {
   padding-top: 30px;
+}
+.server-status {
+  border: 1px solid #eee;
+  border-radius: 10px;
+  padding: 5px 15px;
+}
+.server-status.bg-warning {
+  background-color: #f0ad4e;
+}
+.server-status.bg-danger {
+  background-color: #d9534f;
+}
+.server-status.bg-success {
+  background-color: #5cb85c;
+  color: #fff;
+}
+div.login-container {
+  background-color: #ffffff;
+  padding: 50px;
 }
 /*# sourceMappingURL=/stylesheets/dist.css.map */
