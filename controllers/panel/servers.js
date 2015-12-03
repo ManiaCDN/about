@@ -15,10 +15,10 @@ module.exports.getServers = function (req, res) {
     Servers.servers({
         maintainerid: req.auth.maintainer.maintainerid
     }).then(function(rows) {
-        res.render('panel/servers', {servers: rows});
+        res.render('panel/servers/servers', {servers: rows});
     }).catch(function() {
         // None found! Show empty list
-        res.render('panel/servers', {servers: []});
+        res.render('panel/servers/servers', {servers: []});
     });
 };
 
@@ -35,7 +35,7 @@ module.exports.getServerEdit = function (req, res) {
         if (rows.length == 0) {
             return res.redirect('/panel/secure/servers');
         }
-        res.render('panel/serveredit', {server: rows[0], csrfToken: req.csrfToken()});
+        res.render('panel/servers/serveredit', {server: rows[0], csrfToken: req.csrfToken()});
     }).catch(function() {
         res.redirect('/panel/secure/servers');
     });
