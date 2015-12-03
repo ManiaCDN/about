@@ -112,7 +112,7 @@ router.get('/secure/servers', function (req, res, next) {
 /**
  * Server Edit
  */
-router.get('/secure/servers/:serverid', function (req, res, next) {
+router.get('/secure/servers/:serverid', csrfProtection, function (req, res, next) {
     let serverid = req.params.serverid;
 
     Servers.servers({
@@ -122,7 +122,7 @@ router.get('/secure/servers/:serverid', function (req, res, next) {
         if (rows.length == 0) {
             return res.redirect('/panel/secure/servers');
         }
-        res.render('panel/serveredit', {layout: 'panel', server: rows[0]});
+        res.render('panel/serveredit', {server: rows[0], csrfToken: req.csrfToken()});
     }).catch(function() {
         res.redirect('/panel/secure/servers');
     });
@@ -131,7 +131,7 @@ router.get('/secure/servers/:serverid', function (req, res, next) {
 /**
  * Server Edit Post
  */
-router.post('/secure/servers/:serverid', function (req, res, next) {
+router.post('/secure/servers/:serverid', csrfProtection, function (req, res, next) {
     let serverid = req.params.serverid;
 
     Servers.servers({
