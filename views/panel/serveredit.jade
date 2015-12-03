@@ -1,0 +1,16 @@
+extends layout
+
+block content
+    .container
+        .page-header
+            h1 Edit server
+            p.lead Edit the server.
+
+        form.form(action, method='post')
+            input(type='hidden', value=csrfToken, name='_csrf')
+
+            #edit_active.checkbox
+                label.checkbox-custom(data-initialize='checkbox')
+                    input.sr-only(type='checkbox', value='1', name='edit_active', checked=(server.active === 1))
+                    span.checkbox-label Make server active
+
