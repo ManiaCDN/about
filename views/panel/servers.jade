@@ -1,0 +1,38 @@
+extends layout
+
+block content
+    .container
+        .page-header
+            h1 My Servers
+            p.lead Manage your servers, turn them off temporary and see more statistics
+
+        table.table.table-hover
+            thead
+                tr
+                    th IP
+                    th Loc
+                    th Enabled
+                    th Status
+                    th
+            tbody
+                each mirror in servers
+                    if mirror.active
+                        tr.active
+                    else
+                        tr
+
+                    td
+                        code #{mirror.ip4}#{mirror.ip6}
+                    td #{mirror.countrycode.toUpperCase()}/#{mirror.continentcode.toUpperCase()}
+
+                    td
+                        if mirror.active
+                            label.label.label-success Active
+                        else
+                            label.label.label-warning Inactive
+
+                    td
+                        .server-status(data-status='#{mirror.status}')
+
+                    td
+                        a(href='/panel/secure/servers/#{mirror.serverid}') Edit
