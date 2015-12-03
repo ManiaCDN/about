@@ -20,3 +20,16 @@ module.exports.maintainer = function (opts) {
 
     return q;
 };
+
+
+/**
+ * Update maintainer with updated data
+ * @param id {integer}
+ * @param updates {object}
+ * @return {Promise}
+ */
+module.exports.update = function (id, updates) {
+    return knex('maintainer')
+        .where('maintainerid', id)
+        .update(updates);
+};
