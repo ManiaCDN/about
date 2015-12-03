@@ -9,6 +9,8 @@ block content
                         h2 Login with your Mirror Account
                         p Please login with your credentials you got while confirming your registration
 
+                        include ../layout/cookielaw
+
                     .login-body
                         form.form.form-horizontal(action='', method='post')
                             input(type='hidden', value=csrfToken, name='_csrf')

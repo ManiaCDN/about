@@ -40,6 +40,20 @@ app.use(session({
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
+/**
+ * Cookie Law
+ */
+app.use(function (req, res, next) {
+    "use strict";
+    if (!req.session.hasOwnProperty('_cookielaw')) {
+        res.locals.displayCookieLaw = true;
+        req.session._cookielaw = true;
+
+        return next();
+    }
+    res.locals.displayCookieLaw = false;
+    return next();
+});
 
 /**
  * Routes
