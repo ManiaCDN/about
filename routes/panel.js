@@ -13,6 +13,7 @@ var moment = require('moment');
 var loginController = require('./../controllers/panel/login');
 var panelHomeController = require('./../controllers/panel/home');
 var panelServersController = require('./../controllers/panel/servers');
+var panelProfileController = require('./../controllers/panel/profile');
 
 // Authentication/Authorization
 var auth = require('./../lib/authentication');
@@ -65,6 +66,10 @@ router.get('/secure/servers/:serverid', csrfProtection, panelServersController.g
  * Server Edit Post
  */
 router.post('/secure/servers/:serverid', csrfProtection, panelServersController.postServerEdit);
+
+
+router.get('/secure/profile', csrfProtection, panelProfileController.getProfile);
+router.post('/secure/profile', csrfProtection, panelProfileController.postProfile);
 
 
 /**
