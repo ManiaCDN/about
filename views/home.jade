@@ -80,6 +80,8 @@ block content
 
                                 td
                                     code #{mirror.ip4}#{mirror.ip6}
+                                    if mirror.p_displayname_serverlist
+                                        p.server-displayname.text-muted #{mirror.displayname}
                                 td #{mirror.countrycode}
                                 td
                                     if mirror.active
