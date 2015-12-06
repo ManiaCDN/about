@@ -1,6 +1,7 @@
 "use strict";
 
 var Maintainer = require('./../../services/Maintainer');
+var mail = require('./../../lib/mail');
 
 module.exports = {};
 
@@ -84,6 +85,14 @@ module.exports.postProfile = function (req, res) {
             })
             .then(function(hash) {
                 update.password = hash;
+
+                // Email
+                Maintainer.maintainer({maintainerid: req.auth.maintainer.maintainerid})
+                .then(function(rows) {
+                    if (rows.length > 0) {
+                        mail.sendPasswordChanged(rows[0]);
+                    }
+                });
 
                 // Lets save
                 endWithUpdate(req.auth.maintainer.maintainerid, update);
