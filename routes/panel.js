@@ -24,7 +24,7 @@ var authInit = auth.middleware.initAuthenticated;
  * Bouncer action
  */
 bouncer.blocked = function (req, res) {
-    res.send (403, "Too many requests have been made!");
+    res.status(403).send("Too many requests have been made!");
 };
 
 /**
@@ -33,18 +33,10 @@ bouncer.blocked = function (req, res) {
 router.use('/secure/*', authRequired);
 
 /**
- * Login page (GET)
+ * Login page & actions
  */
 router.get('/login', csrfProtection, authInit, loginController.getLogin);
-
-/**
- * Logout action
- */
 router.get('/secure/logout', authInit, loginController.getLogout);
-
-/**
- * Login action (POST)
- */
 router.post('/login', bouncer.block, csrfProtection, authInit, loginController.postLogin);
 
 /**
@@ -61,13 +53,18 @@ router.get('/secure/servers', panelServersController.getServers);
  * Server Edit
  */
 router.get('/secure/servers/:serverid', csrfProtection, panelServersController.getServerEdit);
-
-/**
- * Server Edit Post
- */
 router.post('/secure/servers/:serverid', csrfProtection, panelServersController.postServerEdit);
 
 
+/**
+ * Reset password
+ */
+router.get('/reset/:token', bouncer.block, authInit, csrfProtection, loginController.getResetPage);
+router.post('/reset/:token', authInit, csrfProtection, loginController.postResetPage);
+
+/**
+ * Profile
+ */
 router.get('/secure/profile', csrfProtection, panelProfileController.getProfile);
 router.post('/secure/profile', csrfProtection, panelProfileController.postProfile);
 
