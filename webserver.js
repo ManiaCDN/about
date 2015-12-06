@@ -34,7 +34,8 @@ app.use(cookieParser());
 app.use(session({
     secret: config.secret,
     saveUninitialized: true,
-    resave: false
+    resave: false,
+    cookie: { secure: true }
 }));
 
 app.use(bodyParser.urlencoded({extended: true}));
