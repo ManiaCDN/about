@@ -78,4 +78,5 @@ node_modules
 ### Project
 # Bower
 public/components
+public/stylesheets/dist.*
 lib/config.js
