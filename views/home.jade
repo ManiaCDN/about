@@ -43,7 +43,21 @@ block content
                 section#cdn_home.group
                     h1 Overview
                     p
-                        | The ManiaCDN is a set of mirrors provided by the community in order to provide a stable cluster of servers to provide static content for game content
+                        | The ManiaCDN is a set of mirrors provided by the community in order to provide a stable cluster of servers to for static content.
+                        | The benefits of using a CDN is huge! Because the network will always select the server that is closest to the client.
+                        | The picture bellow explains how transforming to a CDN will look like when trying to access the file's.
+                    p.text-primary On the left side you see a normal client to server connection. On the right side you see a CDN network with different servers on multiple sites with clients that choose the closest server.
+
+                    img.img-responsive(src='/images/cdn-explained.png')
+                    p.small.text-muted.text-center
+                        | Figure by Kanoha
+                        a(href='https://commons.wikimedia.org/wiki/File:NCDN_-_CDN.png', target='_blank') (link)
+                        | (CC-BY-SA 3.0, Changes made).
+
+
+                    h3 Why use it?
+                    p.lead Simply, it's faster, no more quota limits, more stable and even free for community purposes!
+
                     h3 Content
                     p
                         | Contents of the CDN is managed by validated authors. They can update their files and it will be available within 12 hours (but mostly 6 hours) on the whole network.
@@ -95,6 +109,10 @@ block content
                     h1 Get involved
                     p.lead
                         | If you want to distribute or mirror the content. Please visit our IRC channel #mp-cdn on QuakeNet, or send an PM to 'toffe' or 'askuri' on the ManiaPlanet forum.
+
+                    .button-row
+                        a.btn.btn-success.btn-sm(href='https://forum.maniaplanet.com/ucp.php?i=pm&mode=compose', target='_blank') Send PM
+                        a.btn.btn-success.btn-sm(href='https://webchat.quakenet.org/?channels=mp-cdn', target='_blank') Join IRC
                 section#cdn_about.group
                     h1 About the CDN
                     p
