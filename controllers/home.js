@@ -25,6 +25,7 @@ module.exports.getHome = function (req, res, next) {
 
             // render
             res.render('home', {
+                isDonated: req.query.hasOwnProperty('thanks'),
                 mirrorsOnline: mirrorsOnline,
                 mirrors: mirrors
             });

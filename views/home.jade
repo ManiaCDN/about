@@ -32,13 +32,22 @@ block content
                             a.btn.btn-sm.btn-default(href='/panel') Mirror Panel
 
                         li.paypal-entry
-                            form.paypal(action='https://www.paypal.com/cgi-bin/webscr', method='post', target='_top')
+                            form(action='https://www.paypal.com/cgi-bin/webscr', method='post', target='_top')
                                 input(type='hidden', name='cmd', value='_s-xclick')
-                                input(type='hidden', name='hosted_button_id', value='E6T8CWAUN32ZG')
-                                input(type='image', src='https://www.paypalobjects.com/en_US/NL/i/btn/btn_donateCC_LG.gif', border='0', name='submit', alt='PayPal - The safer, easier way to pay online!')
-                                img(alt='', border='0', src='https://www.paypalobjects.com/en_US/i/scr/pixel.gif', width='1', height='1')
+                                input(type='hidden', name='hosted_button_id', value='6H3CV52CWYV5E')
+                                input(type='image', src='https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif', border='0', name='submit', alt='PayPal - The safer, easier way to pay online!')
+                                img(alt='', border='0', src='https://www.paypal.com/en_US/i/scr/pixel.gif', width='1', height='1')
             .col-md-9.col-md-pull-3(role='main')
                 include layout/cookielaw
+
+                if isDonated
+                    .alert.alert-success.alert-dismissible(role='alert')
+                        strong Thank you <3
+                        |  Thanks for helping us out with our project. We love you!
+
+                        button.btn.btn-default.pull-right.btn-xs(type='button', data-dismiss='alert', aria-label='Close')
+                            | Accept the love!
+
 
                 section#cdn_home.group
                     h1 Overview
