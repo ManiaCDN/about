@@ -37,6 +37,14 @@ block content
                                 input(type='hidden', name='hosted_button_id', value='6H3CV52CWYV5E')
                                 input(type='image', src='https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif', border='0', name='submit', alt='PayPal - The safer, easier way to pay online!')
                                 img(alt='', border='0', src='https://www.paypal.com/en_US/i/scr/pixel.gif', width='1', height='1')
+
+                        li.external
+                            form(action='/servertest', method='post')
+                                .form-group
+                                    label(for='serverAddress') Server IP
+                                    input.form-control(type='text', id='serverAddress', name='serverAddress')
+
+                                button.btn.btn-sm.btn-default(type='submit') Test Server
             .col-md-9.col-md-pull-3(role='main')
                 include layout/cookielaw
 
