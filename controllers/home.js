@@ -36,3 +36,7 @@ module.exports.getHome = function (req, res, next) {
             res.status(500).send("Can't get mirror list!");
         });
 };
+
+module.exports.postServertest = function (req, res, next) {
+
+};
