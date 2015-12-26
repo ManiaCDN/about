@@ -39,6 +39,14 @@ block content
                                 img(alt='', border='0', src='https://www.paypal.com/en_US/i/scr/pixel.gif', width='1', height='1')
 
                         li.external
+                            if isServerTested !== null
+                                if isServerTested
+                                    .alert.alert-success
+                                        strong Server is online, updated and respond to client requests!
+                                else
+                                    .alert.alert-warning
+                                        strong Server is not operating correctly! Check your Virtual Host settings and your update status.
+
                             form(action='/servertest', method='post')
                                 .form-group
                                     label(for='serverAddress') Server IP
