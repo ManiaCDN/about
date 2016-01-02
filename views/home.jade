@@ -28,15 +28,16 @@ block content
                                 li
                                     a(href='#cdn_abuse_takedown') (DMCA) Takedown
 
+                        br
+                        br
+
+                        h4 Links
+
                         li.external
                             a.btn.btn-sm.btn-default(href='/panel') Mirror Panel
+                            a.btn.btn-sm.btn-default(href='http://upload.maniacdn.net/') Upload Content
 
-                        li.paypal-entry
-                            form(action='https://www.paypal.com/cgi-bin/webscr', method='post', target='_top')
-                                input(type='hidden', name='cmd', value='_s-xclick')
-                                input(type='hidden', name='hosted_button_id', value='6H3CV52CWYV5E')
-                                input(type='image', src='https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif', border='0', name='submit', alt='PayPal - The safer, easier way to pay online!')
-                                img(alt='', border='0', src='https://www.paypal.com/en_US/i/scr/pixel.gif', width='1', height='1')
+                        h4 Tools
 
                         li.external
                             if isServerTested !== null
@@ -49,10 +50,20 @@ block content
 
                             form(action='/servertest', method='post')
                                 .form-group
-                                    label(for='serverAddress') Server IP
+                                    label(for='serverAddress') Test My Server, IP4 or IP6
                                     input.form-control(type='text', id='serverAddress', name='serverAddress')
 
                                 button.btn.btn-sm.btn-default(type='submit') Test Server
+
+
+                        li.paypal-entry
+                            form(action='https://www.paypal.com/cgi-bin/webscr', method='post', target='_top')
+                                input(type='hidden', name='cmd', value='_s-xclick')
+                                input(type='hidden', name='hosted_button_id', value='6H3CV52CWYV5E')
+                                input(type='image', src='https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif', border='0', name='submit', alt='PayPal - The safer, easier way to pay online!')
+                                img(alt='', border='0', src='https://www.paypal.com/en_US/i/scr/pixel.gif', width='1', height='1')
+
+
             .col-md-9.col-md-pull-3(role='main')
                 include layout/cookielaw
 
