@@ -16,8 +16,9 @@ block content
                             a(href='#cdn_home') Overview
                         li
                             a(href='#cdn_status') Status
-                        li
-                            a(href='#cdn_mirrors') Mirrors
+                            ul.nav.nav-stacked
+                                li
+                                    a(href='#cdn_status_mirrors') Mirrors
                         li
                             a(href='#cdn_about') About
                         li
@@ -96,10 +97,8 @@ block content
 
                     h3 Content
                     p
-                        | Contents of the CDN is managed by validated authors. They can update their files and it will be available within 12 hours (but mostly 6 hours) on the whole network.
-                    p
-                        | You can apply as a content provider by clicking the Distribute my Content button. You can also read more information about the process of checking and rules.
-                    a.btn.btn-primary.btn-sm(href='#cdn_request') Distribute my Content
+                        | Contents of the CDN is managed by Askuri. We made a tool so everyone could upload content to the CDN. You have to login with your ManiaPlanet login to upload, and the files will be checked manually before accepted and distributed on the network!
+                    a.btn.btn-primary.btn-sm(href='http://upload.maniacdn.net/', target='_blank') Distribute my Content
                     h3 Management
                     p
                         | Servers are automaticly being updated with the newest files distributed over the network.
@@ -111,42 +110,46 @@ block content
                     h1 Status
                     p The actual status of the ManiaCDN network:
                     p Online mirrors: #{mirrorsOnline}
-                section#cdn_mirrors.group
-                    h1 Mirrors
-                    p List with mirrors and the update time
-                    table.table.table-hover.table-responsive
-                        thead
-                            tr
-                                th IP
-                                th Loc
-                                th Active
-                                th Status
-                        tbody
-                            each mirror in mirrors
-                                if mirror.active
-                                    tr.active
-                                else
-                                    tr
 
-                                td
-                                    code #{mirror.ip4}#{mirror.ip6}
-                                    if mirror.p_displayname_serverlist
-                                        p.server-displayname.text-muted #{mirror.displayname}
-                                td #{mirror.countrycode}
-                                td
+                    #cdn_status_mirrors.subgroup
+                        h2 Mirrors
+                        p List with mirrors and the update time
+                        table.table.table-hover.table-responsive
+                            thead
+                                tr
+                                    th IP
+                                    th Loc
+                                    th Active
+                                    th Status
+                            tbody
+                                each mirror in mirrors
                                     if mirror.active
-                                        label.label.label-success Active
+                                        tr.active
                                     else
-                                        label.label.label-warning Inactive
-                                td
-                                    .server-status(data-status='#{mirror.status}')
+                                        tr
+
+                                    td
+                                        code #{mirror.ip4}#{mirror.ip6}
+                                        if mirror.p_displayname_serverlist
+                                            p.server-displayname.text-muted #{mirror.displayname}
+                                    td #{mirror.countrycode}
+                                    td
+                                        if mirror.active
+                                            label.label.label-success Active
+                                        else
+                                            label.label.label-warning Inactive
+                                    td
+                                        .server-status(data-status='#{mirror.status}')
 
                 section#cdn_request.group
                     h1 Get involved
                     p.lead
-                        | If you want to distribute or mirror the content. Please visit our IRC channel #mp-cdn on QuakeNet, or send an PM to 'toffe' or 'askuri' on the ManiaPlanet forum.
+                        | You are free to upload your content to the CDN network, you need to login with your ManiaPlanet Login and the files will be manually checked
+                    p.lead
+                        | If you want to mirror the content on your server, please contact 'askuri' or 'toffe' on the ManiaPlanet forum, visit our #mp-cdn channel on QuakeNet or mail to info [AT] maniacdn.net
 
                     .button-row
+                        a.btn.btn-success.btn-sm(href='http://upload.maniacdn.net/', target='_blank') Upload Content
                         a.btn.btn-success.btn-sm(href='https://forum.maniaplanet.com/ucp.php?i=pm&mode=compose', target='_blank') Send PM
                         a.btn.btn-success.btn-sm(href='https://webchat.quakenet.org/?channels=mp-cdn', target='_blank') Join IRC
                 section#cdn_about.group
