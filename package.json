@@ -17,7 +17,7 @@
     "express": "~4.13.3",
     "express-bouncer": "^0.1.3",
     "express-session": "^1.13.0",
-    "ip-address": "^5.4.0",
+    "ip-address": "^5.4.1",
     "jade": "^1.11.0",
     "knex": "^0.9.0",
     "moment": "^2.11.1",
