@@ -19,7 +19,7 @@
     "express-session": "^1.13.0",
     "ip-address": "^5.8.0",
     "jade": "^1.11.0",
-    "knex": "^0.9.0",
+    "knex": "^0.10.0",
     "moment": "^2.11.2",
     "morgan": "~1.6.1",
     "mysql": "^2.10.2",
