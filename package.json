@@ -24,7 +24,7 @@
     "morgan": "~1.7.0",
     "mysql": "^2.11.1",
     "nodemailer": "^2.5.0",
-    "nodemailer-smtp-transport": "^2.6.0",
+    "nodemailer-smtp-transport": "^2.7.0",
     "querystring": "^0.2.0",
     "request": "^2.74.0",
     "serve-favicon": "~2.3.0",
